@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>임시</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700;900&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/sidebar.css" />
+    <link rel="stylesheet" href="/css/map.css" />
+
+    <script src="/script/modal.js" defer></script>
+    <script src="/script/auth.js" defer></script>
+    <script src="/script/sidebar.js" defer></script>
+    <script src="/script/map.js" defer></script>
+    <script src="/script/main.js" defer></script>
+    <script src="/script/store.js" defer></script>
+    <script src="/script/message.js" defer></script>
+
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0c45677611d25405eef62ce6d3aae24b&libraries=services"></script>
+  </head>
+
+  <body>
+    <main>
+      <!-- 로그인된 경우 -->
+      {% if isLoggedIn %}
+      <button id="my-message-button" class="auth-button">메세지함</button>
+      <button id="my-info-button" class="auth-button">나의 정보</button>
+      <button id="logout-button" class="auth-button">로그아웃</button>
+      <!-- 로그인되지 않은 경우 -->
+      {% else %}
+      <button id="register-button" class="auth-button">회원가입</button>
+      <button id="login-button" class="auth-button">로그인</button>
+      {% endif %}
+
+      <div id="basic-modal">
+        <div id="basic-modal-window">
+          <span id="basic-modal-close-button">&times;</span>
+          <div id="basic-modal-content"></div>
+        </div>
+      </div>
+
+      <div id="sidebar-toggle-button">
+        <span class="hamburger-icon"></span>
+        <span class="hamburger-icon"></span>
+        <span class="hamburger-icon"></span>
+      </div>
+
+      <div id="sidebar">
+        <div id="side-bar-button-container">
+          {% if isManager %}
+          <button id="create-store-button" class="sidebar-button">신규 스토어 등록</button>
+          <button id="my-store-management-button" class="sidebar-button">나의 스토어 관리</button>
+          {% endif %}
+          <button id="search-store-on-map-button" class="sidebar-button">현재 지도 상의 스토어 보기</button>
+        </div>
+        <div id="sidebar-search">
+          <select id="search-option">
+            <option value="category">카테고리</option>
+            <option value="brand">브랜드명</option>
+            <option value="location">위치</option>
+          </select>
+          <input type="text" id="search-input" placeholder="검색어를 입력하세요" />
+          <button id="search-button">검색</button>
+        </div>
+        <div id="sidebar-content"></div>
+      </div>
+
+      <div id="map"></div>
+    </main>
+  </body>
+</html>
